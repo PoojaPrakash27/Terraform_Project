@@ -56,6 +56,7 @@ variable "instance1_name" {
 variable "app_file_1" {
   description = "Name of the application file for the first EC2 instance"
   type        = string
+  default     = "app1.py"
 }
 
 variable "subnet_cidr_block2" {
@@ -91,5 +92,6 @@ variable "instance2_name" {
 variable "app_file_2" {
   description = "Name of the application file for the second EC2 instance"
   type        = string
+  default     = "app2.py"
 }
 
