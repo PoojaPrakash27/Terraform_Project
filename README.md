@@ -24,6 +24,7 @@ The infrastructure consists of:
 
 ## Project Structure
 
+```
 .
 ├── main.tf
 ├── variables.tf
@@ -39,6 +40,7 @@ The infrastructure consists of:
 │ ├── EC2_instances/
 │ └── load_balancers/
 └── README.md
+```
 
 ## Usage
 
@@ -46,6 +48,7 @@ The infrastructure consists of:
 2. Navigate to the project directory
 3. Create a terraform.tfvars file in the root directory with the following content:
 
+```
    vpc_cidr_block = <vpc_cidr_block> # for example - "10.0.0.0/16"
    vpc-name = <vpc-name> # for example - "my-vpc"
    IGW_name = <IGW_name> # for example - "my-igw"
@@ -63,20 +66,30 @@ The infrastructure consists of:
    ami2 = <ami2> # for example - "ami-87654321"
    instance2_type = <instance2_type> # for example - "t2.micro"
    instance2_name = <instance2_name> # for example - "instance-2"
+```
 
 4. Initialize Terraform:
 
+   ```
    terraform init
+   ```
 
 5. Review the planned changes:
 
+   ```
    terraform plan
+   ```
 
 6. Apply the configuration:
 
+   ```
    terraform apply
+   ```
 
 ## Cleanup
 
 To destroy the created resources:
+
+```
 terraform destroy
+```
