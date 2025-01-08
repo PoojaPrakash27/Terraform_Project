@@ -91,5 +91,5 @@ The infrastructure consists of:
 To destroy the created resources:
 
 ```
-terraform destroy
+   terraform destroy
 ```
