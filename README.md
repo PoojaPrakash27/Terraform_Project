@@ -26,47 +26,68 @@ The infrastructure consists of:
 
 ```
 .
-├── main.tf
-├── variables.tf
-├── outputs.tf
+├── README.md
+├── terraform.tf
+├── providers.tf
 ├── modules/
-│ ├── VPC/
-│ ├── IGW_RouteTables/
-│ ├── key_pairs/
-│ ├── security_groups/
-│ ├── S3/
-│ ├── iam/
-│ ├── Subnets/
-│ ├── EC2_instances/
-│ └── load_balancers/
-└── README.md
+   ├── variables.tf
+   ├── outputs.tf
+   ├── vpc.tf
+   ├── route_table.tf
+   ├── key-pairs.tf
+   ├── security_groups.tf
+   ├── s3.tf
+   ├── iam.tf
+   ├── subnets.tf
+   ├── ec2_instances.tf
+   └── load_balancer.tf
+
 ```
 
 ## Usage
 
 1. Clone this repository
 2. Navigate to the project directory
-3. Create a terraform.tfvars file in the root directory with the following content:
+3. Create a main.tf file in the root directory with the following contents:
 
 ```
-   vpc_cidr_block = <vpc_cidr_block> # for example - "10.0.0.0/16"
-   vpc-name = <vpc-name> # for example - "my-vpc"
-   IGW_name = <IGW_name> # for example - "my-igw"
-   key_name = <key_name> # for example - "my-key-pair"
-   bucket_name = <bucket_name> # for example - "my-unique-bucket-name"
-   subnet_cidr_block1 = <subnet_cidr_block1> # for example - "10.0.1.0/24"
-   subnet1-name = <subnet1-name> # for example - "subnet-1"
-   availability_zone1 = <availability_zone1> # for example - "us-west-2a"
-   ami1 = <ami1> # for example - "ami-12345678"
-   instance1_type = <instance1_type> # for example - "t2.micro"
-   instance1_name = <instance1_name> # for example - "instance-1"
-   subnet_cidr_block2 = <subnet_cidr_block2> # for example - "10.0.2.0/24"
-   subnet2-name = <subnet2-name> # for example - "subnet-2"
-   availability_zone2 = <availability_zone2> # for example - "us-west-2b"
-   ami2 = <ami2> # for example - "ami-87654321"
-   instance2_type = <instance2_type> # for example - "t2.micro"
-   instance2_name = <instance2_name> # for example - "instance-2"
+   module "dev-server" {
+      source         = "./modules"
+      vpc_cidr_block = "10.0.0.0/16"
+      vpc-name       = "my-vpc"
+      IGW_name       = "my-igw"
+      key_name       = "my-key"
+      file_path      = "/Path/To/Your/my-key"
+      bucket_name    = "my-bucket"
+      subnets = {
+         subnet-1 = {
+            name = "subnet-1"
+            az   = "us-west-1a"
+            cidr = "10.0.1.0/24"
+         }
+         subnet-2 = {
+            name = "subnet-2"
+            az   = "us-west-1b"
+            cidr = "10.0.2.0/24"
+         }
+      }
+      instances = {
+         instance-1 = {
+            instance_name = "EC2_Instance_1"
+            instance_type = "t2.micro"
+            ami           = "ami-0d144f39b14"
+         }
+         instance-2 = {
+            instance_name = "EC2_Instance_1"
+            instance_type = "t2.micro"
+            ami           = "ami-03db4db1dc4"
+         }
+      }
+      apps = ["app1.py", "app2.py"]
+   }
 ```
+
+Note that the above main.tf file is a sample file. Please modify the main.tf file as per requirement.
 
 4. Initialize Terraform:
 
