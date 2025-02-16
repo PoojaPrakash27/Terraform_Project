@@ -29,6 +29,7 @@ resource "aws_iam_role_policy" "S3_Access_Policy" {
   name = "S3_Access_Policy"
   role = aws_iam_role.S3_Access_Role.name
 
+
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
@@ -59,4 +60,5 @@ resource "aws_iam_role_policy" "S3_Access_Policy" {
 resource "aws_iam_instance_profile" "EC2_instance_profile" {
   name = "EC2_instance_profile"
   role = aws_iam_role.S3_Access_Role.name
+
 }

@@ -3,12 +3,12 @@ variable "vpc_cidr_block" {
   type        = string
 }
 
-variable "vpc-name" {
+variable "vpc_name" {
   description = "Name of the VPC to be created"
   type        = string
 }
 
-variable "IGW_name" {
+variable "igw_name" {
   description = "Name of the Ineternet Gateway to be created"
   type        = string
 }
@@ -18,8 +18,18 @@ variable "key_name" {
   type        = string
 }
 
-variable "file_path" {
+variable "key_path" {
   description = "Path to the private key file"
+  type        = string
+}
+
+variable "app1_path" {
+  description = "Path to the application file"
+  type        = string
+}
+
+variable "app2_path" {
+  description = "Path to the application file"
   type        = string
 }
 

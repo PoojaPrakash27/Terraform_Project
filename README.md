@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This Terraform project demonstrates the deployment of a scalable and secure AWS infrastructure. It includes the setup of a VPC, Internet Gateway, Subnets, EC2 instances, Security Groups, S3 bucket, IAM roles, and an Application Load Balancer.
+This Terraform project demonstrates the deployment of a secure AWS infrastructure. It includes the setup of a VPC, Internet Gateway, Subnets, EC2 instances, Security Groups, S3 bucket, IAM roles, and an Application Load Balancer. The project has been implemented using modular approach.
 
 ## Architecture
 
@@ -29,6 +29,8 @@ The infrastructure consists of:
 ├── README.md
 ├── terraform.tf
 ├── providers.tf
+├── main.tf
+├── variables.tf
 ├── modules/
    ├── variables.tf
    ├── outputs.tf
@@ -48,46 +50,46 @@ The infrastructure consists of:
 
 1. Clone this repository
 2. Navigate to the project directory
-3. Create a main.tf file in the root directory with the following contents:
+3. Create a terraform.tfvars file in the root directory with the following contents:
 
 ```
-   module "dev-server" {
-      source         = "./modules"
-      vpc_cidr_block = "10.0.0.0/16"
-      vpc-name       = "my-vpc"
-      IGW_name       = "my-igw"
-      key_name       = "my-key"
-      file_path      = "/Path/To/Your/my-key"
-      bucket_name    = "my-bucket"
-      subnets = {
-         subnet-1 = {
-            name = "subnet-1"
-            az   = "us-west-1a"
-            cidr = "10.0.1.0/24"
-         }
-         subnet-2 = {
-            name = "subnet-2"
-            az   = "us-west-1b"
-            cidr = "10.0.2.0/24"
-         }
+   vpc_cidr_block = "10.1.0.0/16"
+   vpc_name       = "my-vpc"
+   igw_name       = "my-igw"
+   key_name       = "my-key"
+   key_path       = "Path/To/Key/my-key"
+   app1_path      = "Path/To/App/app1.py"
+   app2_path      = "Path/To/App/app2.py"
+   bucket_name    = "my-bucket"
+   subnets = {
+      subnet-1 = {
+         name = "subnet-1"
+         az   = "us-west-1a"
+         cidr = "10.1.1.0/24"
       }
-      instances = {
-         instance-1 = {
-            instance_name = "EC2_Instance_1"
-            instance_type = "t2.micro"
-            ami           = "ami-0d144f39b14"
-         }
-         instance-2 = {
-            instance_name = "EC2_Instance_1"
-            instance_type = "t2.micro"
-            ami           = "ami-03db4db1dc4"
-         }
+      subnet-2 = {
+         name = "subnet-2"
+         az   = "us-west-1b"
+         cidr = "10.1.2.0/24"
       }
-      apps = ["app1.py", "app2.py"]
    }
+   instances = {
+      instance-1 = {
+         instance_name = "EC2_Instance_1"
+         instance_type = "t2.micro"
+         ami           = "ami-07d2649d67dbe8900"
+      }
+      instance-2 = {
+         instance_name = "EC2_Instance_2"
+         instance_type = "t2.micro"
+         ami           = "ami-07d2649d67dbe8900"
+      }
+   }
+   apps = ["app1.py", "app2.py"]
+
 ```
 
-Note that the above main.tf file is a sample file. Please modify the main.tf file as per requirement.
+Note that the values provided above are sample values. Please adapt the terraform.tfvars file as per requirement.
 
 4. Initialize Terraform:
 

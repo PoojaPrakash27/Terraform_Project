@@ -9,6 +9,7 @@ resource "aws_instance" "webserver" {
   vpc_security_group_ids = [aws_security_group.SSH_Access.id, aws_security_group.HTTP_Access.id]
   iam_instance_profile   = aws_iam_instance_profile.EC2_instance_profile.name
 
+
   tags = {
     Name = each.value.instance_name
   }

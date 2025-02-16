@@ -1,7 +1,7 @@
 # This resource block defines an AWS Application Load Balancer (ALB).
 
 resource "aws_lb" "ALB" {
-  name               = "My-LB"
+  name               = "My-LB1"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.HTTP_Access.id]
@@ -16,7 +16,7 @@ resource "aws_lb" "ALB" {
 # - protocol: The protocol to use to connect with the target. It is set to "HTTP".
 
 resource "aws_lb_target_group" "ALB" {
-  name     = "TargetGroup-ALB"
+  name     = "TargetGroup-ALB1"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.vpc.id
